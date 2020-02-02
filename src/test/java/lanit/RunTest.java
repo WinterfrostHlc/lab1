@@ -36,15 +36,6 @@ public class RunTest {
     @Test
     public void testingName() {
 
-        assertEquals("Подарочная коробка", box1.getName());
+        assertEquals(2.22, box1.getWeight(), 0.00001);
     }
-    /*
-    @Test
-    public void testingWeight() {
-        assertEquals(2.22, box1.getWeight());
-    }
-
-     */
-
-
 }
