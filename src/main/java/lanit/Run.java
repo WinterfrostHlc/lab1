@@ -7,14 +7,14 @@ final class Run {
     /**
      * Пустой конструктор Run.
      */
-    private Run() { };
+    private Run() { }
 
     /**
      * Основной метод, инициализирующий программу и переводящий код в строки,
      * доступные для терминала.
      * @param args  массив строк.
      */
-    public static void main(final String[] args) throws ItemStoreExeption,
+    public static void main(final String[] args) throws ItemStoreException,
             ItemAlreadyPlacedException {
 
         Box box = new Box("Коробка1", 4, "Красный");

@@ -17,13 +17,15 @@ public class RunTest {
     private static Item bag3;
 
     @Before
-    public void setUp() throws ItemStoreExeption, ItemAlreadyPlacedException {
-        box1 = new Box("Подарочная коробка", 2.0, 1, "Разноцветная", 10);
+    public void setUp() throws ItemStoreException, ItemAlreadyPlacedException {
+        box1 = new Box("Подарочная коробка", 2.0, 1,
+                "Разноцветная", 10);
         box2 = new Box("Коробка от наушников", 1, "Белая");
         box3 = new Box("Кейс", 2, "Белая");
         stack1 = new Stack("Внезапная стопка", 5);
         stack2 = new Stack("Запланированная стопка", 10);
-        bag1 = new Bag("Подарочный мешок", 0.2, 5, "Разноцветный", 10);
+        bag1 = new Bag("Подарочный мешок", 0.2, 5,
+                "Разноцветный", 10);
         bag2 = new Bag("Мусорный мешок", 1, "Прозрачный");
         bag3 = new Bag("Сахарный мешок", 2, "Белый");
 
@@ -34,8 +36,16 @@ public class RunTest {
     }
 
     @Test
-    public void testingName() {
+    public void testingBox1Weight() {
 
         assertEquals(2.22, box1.getWeight(), 0.00001);
     }
+    //@Test
+    /*
+    public void testingBox2Weight() {
+
+        assertEquals(0, box1.getWeight(), 0.00001);
+    }
+
+     */
 }

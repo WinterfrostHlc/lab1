@@ -16,7 +16,7 @@ public class Box extends Container {
     /** Константа значения внутреннего объема коробки. */
     private static Integer DEFAULT_INTERNAL_VOLUME = 5;
     /** Коллекция для хранения всех предметов, хранящихся в данном объекте. */
-    private List<Item> items = new ArrayList<Item>();
+    private List<Item> items = new ArrayList<>();
 
     /**
      * Данный конструктор коробки подробно описывает параметры коробки,
@@ -60,7 +60,7 @@ public class Box extends Container {
      *             будет быть помещён в контейнер.
      */
     public void put(final Item item) throws ItemAlreadyPlacedException,
-            ItemStoreExeption {
+            ItemStoreException {
         System.out.println("Пробуем поместить в " + super.getName()
                 + " " + item.getName());
         if (super.equals(item)) {
@@ -68,16 +68,14 @@ public class Box extends Container {
         } else if (item.getUsed()) {
             throw new ItemAlreadyPlacedException("Предмет уже где-то лежит");
         } else {
-            if (this.getInternalVolume() + item.getVolume()
-                    <= this.getMaxInternalVolume()) {
-                this.setInternalVolume(this.getInternalVolume()
-                        + item.getVolume());
+            if (this.getInternalVolume() + item.getVolume() <= this.getMaxInternalVolume()) {
+                this.setInternalVolume(this.getInternalVolume() + item.getVolume());
                 super.setWeight(this.getWeight() + item.getWeight());
                 items.add(item);
                 item.setUsed(true);
                 System.out.println("Всё ок.");
             } else {
-                throw new ItemStoreExeption("Невозможно поместить");
+                throw new ItemStoreException("Невозможно поместить"); //hello
             }
         }
     }
