@@ -4,12 +4,6 @@ package lanit;
    от коробки и копирует её поведение. */
 public class Bag extends Box {
 
-    /** Константа значения веса для мешка,
-     *  инициализированного без указания веса. */
-    private static final Double DEFAULT_BAG_WEIGHT = 0.01;
-    /** Константа значения стандартного значения объёма
-     *  для конструтора без указания объёма. */
-    private static final Integer DEFAULT_INTERNAL_VOLUME = 6;
     /**
      * Расширенный конструктор создания объекта "мешок".
      * Разница с box лишь в параметре flat.
@@ -37,8 +31,10 @@ public class Bag extends Box {
      */
     Bag(final String name, final Integer volume, final String color) {
         super(name, volume, color);
-        super.setWeight(DEFAULT_BAG_WEIGHT);
+        final Double defaultBagWeight = 0.01;
+        super.setWeight(defaultBagWeight);
         super.setFlat(false);
-        this.setMaxInternalVolume(DEFAULT_INTERNAL_VOLUME);
+        final Integer defaultInternalVolume = 6;
+        this.setMaxInternalVolume(defaultInternalVolume);
     }
 }

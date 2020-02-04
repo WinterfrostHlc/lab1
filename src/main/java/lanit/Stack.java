@@ -46,6 +46,7 @@ public class Stack extends Container {
         } else {
             if (this.getInternalVolume() + 1 <= this.maxSize) {
                 this.setInternalVolume(this.getInternalVolume() + 1);
+                this.setVolume(this.getVolume() + item.getVolume());
                 super.setWeight(this.getWeight() + item.getWeight());
                 intoStack.push(item);
                 item.setUsed(true);
@@ -63,6 +64,8 @@ public class Stack extends Container {
         System.out.println("Убираем верхний предмет");
         if (!intoStack.empty()) {
             super.setInternalVolume(super.getInternalVolume() - 1);
+            this.setVolume(this.getVolume()
+                    - intoStack.lastElement().getVolume());
             super.setWeight(this.getWeight()
                     - intoStack.lastElement().getWeight());
             System.out.println("Со стопки убран " + intoStack.lastElement());
