@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"lanit","l":"Bag"},{"p":"lanit","l":"Box"},{"p":"lanit","l":"ColorInterface"},{"p":"lanit","l":"Container"},{"p":"lanit","l":"Item"},{"p":"lanit","l":"ItemAlreadyPlacedException"},{"p":"lanit","l":"ItemStoreException"},{"p":"lanit","l":"RunTest"},{"p":"lanit","l":"Stack"}]
