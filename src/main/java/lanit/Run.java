@@ -13,6 +13,8 @@ final class Run {
      * Основной метод, инициализирующий программу и переводящий код в строки,
      * доступные для терминала.
      * @param args  массив строк.
+     * @throws ItemStoreException Проброс перегрузки объёма.
+     * @throws ItemAlreadyPlacedException Проброс повторного помещения объекта.
      */
     public static void main(final String[] args) throws ItemStoreException,
             ItemAlreadyPlacedException {
@@ -41,9 +43,6 @@ final class Run {
 
         box1.put(ball);
         box1.getInfo();
-
-        System.out.println(0.5+0.01+0.01+0.05+2.0);
-        System.out.println(0.5 + bag1.getWeight()+bag3.getWeight()+bag2.getWeight()+ball.getWeight());
 
     }
 }

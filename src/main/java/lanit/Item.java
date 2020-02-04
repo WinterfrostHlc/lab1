@@ -22,9 +22,21 @@ public class Item {
     private Boolean flat;
     /** Флаг использования данного объекта в одном из контейнеров. */
     private Boolean used = false;
-    Item(){}
+
+    /**
+     * Конструктор, заменяющий дефолтный.
+     */
+    Item() { }
+
+    /**
+     * Конструктор с переменными на входе.
+     * @param name Значения имени.
+     * @param weight Вес объекта.
+     * @param volume Внешний объём объекта.
+     * @param flat Плоский ли объект.
+     */
     Item(final String name, final Double weight, final Integer volume,
-         final Boolean flat){
+         final Boolean flat) {
         setName(name);
         setWeight(weight);
         setVolume(volume);
@@ -36,7 +48,7 @@ public class Item {
      * True - плоский, false - нет.
      * @param flat Флаг плоскости.
      */
-    public void setFlat(final Boolean flat) {
+    public final void setFlat(final Boolean flat) {
         this.flat = flat;
     }
 
@@ -44,7 +56,7 @@ public class Item {
      * Метод изменение значение объёма, которое занимает предмет сам по себе.
      * @param volume Переменная значения объёма.
      */
-    public void setVolume(final Integer volume) {
+    public final void setVolume(final Integer volume) {
         this.volume = volume;
     }
 
@@ -52,7 +64,7 @@ public class Item {
      * Метод установки веса.
      * @param weight Переменная веса.
      */
-    public void setWeight(final Double weight) {
+    public final void setWeight(final Double weight) {
         this.weight = weight;
     }
 
@@ -60,7 +72,7 @@ public class Item {
      * Устанавливает имя.
      * @param name Параметр имени.
      */
-    public void setName(final String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
@@ -68,7 +80,7 @@ public class Item {
      * Метод изменения флага использован ли предмет.
      * @param used Параметр поля использования.
      */
-    public void setUsed(final Boolean used) {
+    public final void setUsed(final Boolean used) {
         this.used = used;
     }
 
@@ -76,7 +88,7 @@ public class Item {
      * Метод извлечения приватного поля имени.
      * @return Возвращает имя.
      */
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
@@ -84,7 +96,7 @@ public class Item {
      * Метод извлечения значения объёма.
      * @return Возвращает внешний объём.
      */
-    public Integer getVolume() {
+    public final Integer getVolume() {
         return volume;
     }
 
@@ -92,7 +104,7 @@ public class Item {
      * Метод извлечения веса объекта.
      * @return вес.
      */
-    public Double getWeight() {
+    public final Double getWeight() {
         return weight;
     }
 
@@ -100,7 +112,7 @@ public class Item {
      * Метод получения значения флага параметра плоскостьи объекта.
      * @return флаг.
      */
-    public Boolean getFlat() {
+    public final Boolean getFlat() {
         return flat;
     }
 
@@ -108,7 +120,7 @@ public class Item {
      * Метод получения значения, используется где-то этот объект или нет.
      * @return флаг.
      */
-    public Boolean getUsed() {
+    public final Boolean getUsed() {
         return used;
     }
 
@@ -118,7 +130,7 @@ public class Item {
      * @return имя объекта.
      */
     @Override
-    public String toString() {
+    public final String toString() {
         return getName();
     }
 }

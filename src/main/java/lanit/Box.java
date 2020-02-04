@@ -7,14 +7,10 @@ import java.util.List;
 /**
  * Класс, реализующий логику коробки, расширяющий класс контейнеров.
  */
-public class Box extends Container {
+public class Box extends Container implements ColorInterface {
     /** Поле цвета контейнера, кажется логичным, что контейнеры
      *  будут одноцветными. */
     private String color;
-    /** Константа значения веса коробки без наполнения. */
-    private static Double DEFAULT_BOX_WEIGHT = 0.02;
-    /** Константа значения внутреннего объема коробки. */
-    private static Integer DEFAULT_INTERNAL_VOLUME = 5;
     /** Коллекция для хранения всех предметов, хранящихся в данном объекте. */
     private List<Item> items = new ArrayList<>();
 
@@ -36,7 +32,7 @@ public class Box extends Container {
         super.setVolume(volume);
         super.setFlat(true);
         super.setMaxInternalVolume(maxInternalVolume);
-        this.color = color;
+        this.setColor(color);
     }
 
     /**
@@ -47,19 +43,26 @@ public class Box extends Container {
      */
     Box(final String name, final Integer volume, final String color) {
         super.setName(name);
-        super.setWeight(DEFAULT_BOX_WEIGHT);
+        final Double defaultBoxWeight = 0.02;
+        super.setWeight(defaultBoxWeight);
         super.setVolume(volume);
         super.setFlat(true);
-        this.color = color;
-        super.setMaxInternalVolume(DEFAULT_INTERNAL_VOLUME);
+        this.setColor(color);
+        final Integer defaultInternalVolume = 5;
+        super.setMaxInternalVolume(defaultInternalVolume);
     }
 
     /**
      * Метод, реализующий логику помещения в контейнер объекта.
      * @param item Параметр item, соответственно, объект, который должен
      *             будет быть помещён в контейнер.
+     * @throws ItemAlreadyPlacedException Исключение, оповещающее о том,что
+     * предмет уже находится в другом контейнере.
+     * @throws ItemStoreException Исключение, оповещающее о невозможности
+     * поместить предмет в контейнер по причине переизбытка максимального
+     * значения объёма в контейнере.
      */
-    public void put(final Item item) throws ItemAlreadyPlacedException,
+    public final void put(final Item item) throws ItemAlreadyPlacedException,
             ItemStoreException {
         System.out.println("Пробуем поместить в " + super.getName()
                 + " " + item.getName());
@@ -68,14 +71,16 @@ public class Box extends Container {
         } else if (item.getUsed()) {
             throw new ItemAlreadyPlacedException("Предмет уже где-то лежит");
         } else {
-            if (this.getInternalVolume() + item.getVolume() <= this.getMaxInternalVolume()) {
-                this.setInternalVolume(this.getInternalVolume() + item.getVolume());
+            if (this.getInternalVolume() + item.getVolume()
+                    <= this.getMaxInternalVolume()) {
+                this.setInternalVolume(this.getInternalVolume()
+                        + item.getVolume());
                 super.setWeight(this.getWeight() + item.getWeight());
                 items.add(item);
                 item.setUsed(true);
                 System.out.println("Всё ок.");
             } else {
-                throw new ItemStoreException("Невозможно поместить"); //hello
+                throw new ItemStoreException("Невозможно поместить");
             }
         }
     }
@@ -84,7 +89,7 @@ public class Box extends Container {
      * Метод без аргумента случайным образом выбирает,
      * какой объект будет убран из коллекции.
      */
-    public void take() {
+    public final void take() {
         if (items.size() > 0) {
             int i = (int) (Math.random() * (items.size() - 1));
             this.setInternalVolume(this.getInternalVolume()
@@ -101,7 +106,7 @@ public class Box extends Container {
      * и реализуется итератором.
      * @param item Предмет, который мы хотим убрать.
      */
-    public void take(final Item item) {
+    public final void take(final Item item) {
         System.out.println("Это предмет");
         Iterator<Item> iteration = items.iterator();
         while (iteration.hasNext()) {
@@ -122,7 +127,7 @@ public class Box extends Container {
      * Метод, который удаляет мешки из коллекции алгоритмом перебора foreach.
      * @param item Предмет, который мы ищем.
      */
-    public void take(final Bag item) {
+    public final void take(final Bag item) {
         int i = 0;
         if (items.size() > 0) {
             for (Item x : items) {
@@ -143,7 +148,7 @@ public class Box extends Container {
      * api.
      * @param item Предмет, который будет убран из коллекции.
      */
-    public void take(final Stack item) {
+    public final void take(final Stack item) {
         System.out.println("Это стек");
 
         items.stream().filter(i -> i.equals(item)).findAny().map(p -> {
@@ -156,7 +161,7 @@ public class Box extends Container {
      * Метод, который лямбда выражением ищет предмет в коллекции и удаляет его.
      * @param item Предмет, который ищетсяв коллекции.
      */
-    public void take(final Box item) {
+    public final void take(final Box item) {
         System.out.println("Это лямбда выражение");
         items.removeIf(i -> i.equals(item));
     }
@@ -164,18 +169,28 @@ public class Box extends Container {
     /**
      * Метод, вызов которого отображает в консоли значение полей переменных.
      */
-    public void getInfo() {
+    public final void getInfo() {
         System.out.println("============");
         System.out.println(this.getName() + "\n"
                 + this.getInternalVolume() + "\n" + this.getFlat()
                 + "\n" + this.getWeight() + "\n" + "В коробке: "
-                + this.getItems());
+                + this.getItems() + "\n" + "Цвет: " + this.getColor());
     }
     /**
      * Метод, возвращающий содержание коллекции.
      * @return Соответственно, возвращает содержимое.
      */
-    public List<Item> getItems() {
+    public final List<Item> getItems() {
         return items;
+    }
+
+    @Override
+    public final String getColor() {
+        return color;
+    }
+
+    @Override
+    public final void setColor(final String color) {
+        this.color = color;
     }
 }
